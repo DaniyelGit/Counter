@@ -1,22 +1,24 @@
 import React from 'react';
 import s from './counter.module.css';
 import {Scoreboard} from "./Scoreboard/Scoreboard";
-
+import {a} from "@react-spring/web";
+import {SpringValue} from "react-spring";
 
 
 type CounterPropsType = {
-
+    transform: SpringValue<string>
+    opacity: SpringValue<number>
 }
 
 export const Counter = (props: CounterPropsType) => {
 
     const {
-
+        transform,
+        opacity,
     } = props;
 
-
     return (
-        <div className="counter">
+        <a.div className={'counter'} style={{ opacity: opacity.to((o: number) => 1 - o), transform}}>
 
             <Scoreboard/>
 
@@ -26,9 +28,11 @@ export const Counter = (props: CounterPropsType) => {
                     <button className={'button button__dec'}>уменьшить</button>
                 </div>
                 <div className={'wrap__button_set'}>
-                    <button className={'button button__set'}>настроить</button>
+                    <button className={'button button__set'}>
+                        настроить
+                    </button>
                 </div>
             </div>
-        </div>
+        </a.div>
     );
 };

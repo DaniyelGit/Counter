@@ -20,7 +20,6 @@
     position: relative;
     width: 500px;
     height: 350px;
-    perspective: 1000px;
 }
 
 .counter, .settings {
@@ -29,15 +28,15 @@
     height: 100%;
     left: 0;
     top: 0;
-    box-shadow: 10px 10px 15px rgba(0,0,0,0.5);
-    transition: 1s;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     backface-visibility: hidden;
     padding: 30px 20px;
+    will-change: transform, opacity;
 }
 
 .counter {
     background-color: #fff;
-}
+ }
 
 .settings {
     background-color: #fff;
@@ -75,13 +74,6 @@
 }
 
 
-
-
-
-
-
-
-
 .scoreboard {
     display: flex;
     justify-content: center;
@@ -117,8 +109,6 @@
 }
 
 
-
-
 .button {
     border: none;
     outline: none;
@@ -137,7 +127,8 @@
     height: 110px;
     border-radius: 100px;
     background-color: #ff0000;
-    box-shadow: 3px 3px 20px rgb(236, 31, 31), 1px 1px 5px rgb(14, 4, 4);
+    box-shadow: 1px 2px 5px rgb(236 31 31), 1px 1px 6px rgb(14 4 4);
+    color: #fff;
 }
 
 .button:active {
@@ -145,7 +136,8 @@
 }
 
 .button__set:active {
-    color: #000;
+    font-size: 15px;
+    color: #fff;
     box-shadow: inset 1px 1px 1px rgb(255, 0, 0), inset 1px 1px 15px rgb(255, 0, 0);
 }
 
@@ -155,12 +147,3 @@
     justify-content: center;
     margin-top: 30px;
 }
-
-
-/*.wrap:hover .counter{*/
-/*    transform: rotateY(180deg);*/
-/*}*/
-/*.wrap:hover .settings{*/
-/*    transform: rotateY(360deg);*/
-/*}*/
-
