@@ -20,12 +20,14 @@ export const Settings = (props: SettingsPropsType) => {
         opacity,
     }= props;
 
+    const styleForSettings = {
+        opacity,
+        transform,
+        rotateY: '180deg'
+    }
+
     return (
-        <a.div className={'settings'} style={{
-            opacity,
-            transform,
-            rotateY: '180deg'
-        }}>
+        <a.div className={'settings'} style={styleForSettings}>
             <div className={'settings__wrap'}>
                 <InputBlock/>
                 <InputBlock/>

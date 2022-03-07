@@ -17,8 +17,10 @@ export const Counter = (props: CounterPropsType) => {
         opacity,
     } = props;
 
+    const styleForCounter = { opacity: opacity.to((o: number) => 1 - o), transform};
+
     return (
-        <a.div className={'counter'} style={{ opacity: opacity.to((o: number) => 1 - o), transform}}>
+        <a.div className={'counter'} style={styleForCounter}>
 
             <Scoreboard/>
 
