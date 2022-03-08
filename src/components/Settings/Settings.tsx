@@ -11,6 +11,7 @@ import {SpringValue} from "react-spring";
 type SettingsPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
+    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Settings = (props: SettingsPropsType) => {
@@ -18,6 +19,7 @@ export const Settings = (props: SettingsPropsType) => {
     const {
         transform,
         opacity,
+        changeIsDoneSettings,
     }= props;
 
     const styleForSettings = {
@@ -33,7 +35,13 @@ export const Settings = (props: SettingsPropsType) => {
                 <InputBlock/>
             </div>
             <div className={'settings__button'}>
-                <button className={'button button__set'}>Назад</button>
+                <button
+                    className={'button button__set'}
+                    data-settings={'off'}
+                    onClick={changeIsDoneSettings}
+                >
+                    Назад
+                </button>
             </div>
         </a.div>
     );

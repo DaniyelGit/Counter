@@ -8,6 +8,7 @@ import {SpringValue} from "react-spring";
 type CounterPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
+    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Counter = (props: CounterPropsType) => {
@@ -15,9 +16,10 @@ export const Counter = (props: CounterPropsType) => {
     const {
         transform,
         opacity,
+        changeIsDoneSettings,
     } = props;
 
-    const styleForCounter = { opacity: opacity.to((o: number) => 1 - o), transform};
+    const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
 
     return (
         <a.div className={'counter'} style={styleForCounter}>
@@ -30,7 +32,11 @@ export const Counter = (props: CounterPropsType) => {
                     <button className={'button button__dec'}>уменьшить</button>
                 </div>
                 <div className={'wrap__button_set'}>
-                    <button className={'button button__set'}>
+                    <button
+                        className={'button button__set'}
+                        data-settings={'on'}
+                        onClick={changeIsDoneSettings}
+                    >
                         настроить
                     </button>
                 </div>

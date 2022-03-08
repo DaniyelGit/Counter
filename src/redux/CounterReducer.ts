@@ -1,3 +1,5 @@
+import {ACTIONS_TYPE, CounterReducersTypes} from "./action";
+import {RootReducerType} from "./store";
 
 
 const initialState = {
@@ -9,9 +11,14 @@ const initialState = {
 
 type initialStateType = typeof initialState;
 
-export const CounterReducer = (state: initialStateType = initialState, action: GeneralTypeForReducer) => {
+export const CounterReducer = (state: initialStateType = initialState, action: CounterReducersTypes) => {
     switch (action.type) {
-
+        case ACTIONS_TYPE.CHANGE_IS_DONE_SETTINGS: {
+            return {
+                ...state,
+                ...action.payload
+            }
+        }
 
 
 
@@ -22,6 +29,7 @@ export const CounterReducer = (state: initialStateType = initialState, action: G
     }
 }
 
+export const selectCounterState = (store: RootReducerType) => store.counter;
 
 
 
@@ -34,7 +42,4 @@ export const CounterReducer = (state: initialStateType = initialState, action: G
 
 
 
-export type GeneralTypeForReducer = {
-    type: string,
-    [key: string]: any
-};
+
