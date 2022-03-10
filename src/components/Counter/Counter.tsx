@@ -9,8 +9,9 @@ import {Button} from "../Button/Button";
 type CounterPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
-    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     currentValue: number
+    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
+    changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Counter = (props: CounterPropsType) => {
@@ -18,8 +19,9 @@ export const Counter = (props: CounterPropsType) => {
     const {
         transform,
         opacity,
-        changeIsDoneSettings,
         currentValue,
+        changeIsDoneSettings,
+        changeCurrentValue,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -31,16 +33,22 @@ export const Counter = (props: CounterPropsType) => {
 
             <div className={'counter__buttons'}>
                 <div className={'counter__buttons_wrap'}>
-                    <button className={'button button__inc'}>увеличить</button>
-                    <button className={'button button__dec'}>уменьшить</button>
+                    <Button dataAttribute={'inc'}
+                            className={'button button__inc'}
+                            onClick={changeCurrentValue}
+                            children={'увеличить'}
+                    />
+                    <Button dataAttribute={'dec'}
+                            className={'button button__dec'}
+                            onClick={changeCurrentValue}
+                            children={'уменьшить'}
+                    />
                 </div>
                 <div className={'wrap__button_set'}>
                     <Button className={'button button__set'}
                             dataAttribute={'on'}
                             onClick={changeIsDoneSettings}
-                    >
-                        настроить
-                    </Button>
+                    >настроить</Button>
                 </div>
             </div>
         </a.div>

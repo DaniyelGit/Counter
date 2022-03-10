@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCounterState} from "../redux/CounterReducer";
 import {Counter} from "../components/Counter/Counter";
 import {Settings} from "../components/Settings/Settings";
-import {changeIsDoneSettingsAC, changeMinOrMaxValue} from "../redux/action";
+import {changeIsDoneSettingsAC, changeMinOrMaxValue, decreaseValueAC, increaseValueAC} from "../redux/action";
 import {useSpring} from "react-spring";
 
 
@@ -25,7 +25,7 @@ export const Container = () => {
     });
 
     const changeIsDoneSettings = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.currentTarget.dataset.settings === 'on'
+        e.currentTarget.dataset.button === 'on'
             ? dispatch(changeIsDoneSettingsAC(true))
             : dispatch(changeIsDoneSettingsAC(false));
     }
@@ -33,20 +33,24 @@ export const Container = () => {
 
     const changeMaxOrMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
+            const currentValueInput: number = +e.currentTarget.value;
             const trigger: string = e.currentTarget.dataset.input;
             if (trigger === 'min') {
-                const currentMinValue = e.currentTarget.value;
-                dispatch(changeMinOrMaxValue(currentMinValue, valueMax))
+                dispatch(changeMinOrMaxValue(currentValueInput, valueMax))
             }
             if (trigger === 'max') {
-                const currentMaxValue = e.currentTarget.value;
-                dispatch(changeMinOrMaxValue(valueMin, currentMaxValue))
+                dispatch(changeMinOrMaxValue(valueMin, currentValueInput))
             }
         }
     }
 
-    const changeCurrentValue = () => {
-
+    const changeCurrentValue = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (e.currentTarget.dataset.button) {
+            const trigger: string = e.currentTarget.dataset.button;
+            trigger === 'inc'
+                ? dispatch(increaseValueAC())
+                : dispatch(decreaseValueAC());
+        }
     }
 
 
@@ -59,6 +63,7 @@ export const Container = () => {
                     transform={transform}
                     opacity={opacity}
                     changeIsDoneSettings={changeIsDoneSettings}
+                    changeCurrentValue={changeCurrentValue}
                 />
                 <Settings
                     transform={transform}

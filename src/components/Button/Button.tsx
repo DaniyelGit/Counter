@@ -19,7 +19,7 @@ export const Button = (props: ButtonPropsType) => {
 
     return (
         <button
-            data-settings={dataAttribute}
+            data-button={dataAttribute}
             onClick={onClick}
             {...restProps}
         />
