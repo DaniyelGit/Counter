@@ -4,9 +4,9 @@ import {RootReducerType} from "./store";
 
 const initialState = {
     isDoneSettings: false,
-    currentValue: '0',
-    valueMin: '',
-    valueMax: '',
+    currentValue: 0,
+    valueMin: 0,
+    valueMax: 0,
 }
 
 type initialStateType = typeof initialState;
@@ -19,10 +19,19 @@ export const CounterReducer = (state: initialStateType = initialState, action: C
                 ...action.payload
             }
         }
-
-
-
-
+        case ACTIONS_TYPE.CHANGE_CURRENT_VALUE: {
+            return {
+                ...state,
+                ...action.payload
+            }
+        }
+        case ACTIONS_TYPE.CHANGE_MIN_OR_MAX_VALUE: {
+            return  {
+                ...state,
+                ...action.payload,
+                currentValue: action.payload.valueMin,
+            }
+        }
         default: {
             return state;
         }

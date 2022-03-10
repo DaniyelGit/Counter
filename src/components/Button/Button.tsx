@@ -5,14 +5,13 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type ButtonPropsType = DefaultButtonPropsType & {
     dataAttribute: string
-    callBack: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Button = (props: ButtonPropsType) => {
 
     const {
         dataAttribute,
-        callBack,
+        onClick,
         ...restProps // className, children.
     } = props;
 
@@ -21,7 +20,7 @@ export const Button = (props: ButtonPropsType) => {
     return (
         <button
             data-settings={dataAttribute}
-            onClick={callBack}
+            onClick={onClick}
             {...restProps}
         />
     );

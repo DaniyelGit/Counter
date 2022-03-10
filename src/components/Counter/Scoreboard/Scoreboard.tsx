@@ -1,18 +1,24 @@
 import React from 'react';
 import s from './scoreboard.module.css';
+import {useSelector} from "react-redux";
+import {selectCounterState} from "../../../redux/CounterReducer";
 
 
-type ScoreboardPropsType = {}
+type ScoreboardPropsType = {
+    currentValue: number
+}
 
 export const Scoreboard = (props: ScoreboardPropsType) => {
 
-    const {} = props;
+    const {
+        currentValue,
+    } = props;
 
 
     return (
         <div className={'scoreboard'}>
             <span className={'scoreboard__value'}>
-                101
+                {currentValue}
             </span>
         </div>
     );

@@ -10,6 +10,7 @@ type CounterPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
+    currentValue: number
 }
 
 export const Counter = (props: CounterPropsType) => {
@@ -18,6 +19,7 @@ export const Counter = (props: CounterPropsType) => {
         transform,
         opacity,
         changeIsDoneSettings,
+        currentValue,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -25,7 +27,7 @@ export const Counter = (props: CounterPropsType) => {
     return (
         <a.div className={'counter'} style={styleForCounter}>
 
-            <Scoreboard/>
+            <Scoreboard currentValue={currentValue}/>
 
             <div className={'counter__buttons'}>
                 <div className={'counter__buttons_wrap'}>
@@ -35,7 +37,7 @@ export const Counter = (props: CounterPropsType) => {
                 <div className={'wrap__button_set'}>
                     <Button className={'button button__set'}
                             dataAttribute={'on'}
-                            callBack={changeIsDoneSettings}
+                            onClick={changeIsDoneSettings}
                     >
                         настроить
                     </Button>

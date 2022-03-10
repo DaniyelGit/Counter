@@ -1,20 +1,36 @@
-import React from 'react';
+import React, {DetailedHTMLProps, InputHTMLAttributes} from 'react';
 import s from './inputBlock.module.css';
 
-type InputPropsType = {
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
+
+type InputPropsType = DefaultInputPropsType & {
+    valueInput: number
+    dataAttribute: string
 }
 
 export const InputBlock = (props: InputPropsType) => {
 
     const {
-
+        valueInput,
+        dataAttribute,
+        onChange,
     } = props;
+
+
+
+
+
+    const labelChildren = dataAttribute === 'min' ? 'Минимальное' : 'Максимальное';
 
     return (
         <div className={'settings__wrap_input'}>
-            <label className={'label'}>Минимальное:</label>
-            <input type={"number"} value={'0'}/>
+            <label className={'label'}>{labelChildren}</label>
+            <input type={"number"}
+                   value={valueInput}
+                   data-input={dataAttribute}
+                   onChange={onChange}
+            />
         </div>
     );
 };
