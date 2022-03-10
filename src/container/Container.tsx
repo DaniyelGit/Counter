@@ -18,6 +18,9 @@ export const Container = () => {
 
     const dispatch = useDispatch();
 
+    const min = valueMin;
+    const max = valueMax;
+
     const { transform, opacity} = useSpring({
         opacity: isDoneSettings ? 1 : 0,
         transform: `perspective(600px) rotateY(${isDoneSettings ? 180 : 0}deg)`,
@@ -45,11 +48,17 @@ export const Container = () => {
     }
 
     const changeCurrentValue = (e: React.MouseEvent<HTMLButtonElement>) => {
+        debugger;
         if (e.currentTarget.dataset.button) {
             const trigger: string = e.currentTarget.dataset.button;
-            trigger === 'inc'
-                ? dispatch(increaseValueAC())
-                : dispatch(decreaseValueAC());
+           if (trigger === 'inc') {
+               if (currentValue < valueMax) {
+                   dispatch(increaseValueAC())
+               }
+           }
+           else {
+               dispatch(decreaseValueAC());
+           }
         }
     }
 
