@@ -3,6 +3,7 @@ import s from './counter.module.css';
 import {Scoreboard} from "./Scoreboard/Scoreboard";
 import {a} from "@react-spring/web";
 import {SpringValue} from "react-spring";
+import {Button} from "../Button/Button";
 
 
 type CounterPropsType = {
@@ -32,13 +33,12 @@ export const Counter = (props: CounterPropsType) => {
                     <button className={'button button__dec'}>уменьшить</button>
                 </div>
                 <div className={'wrap__button_set'}>
-                    <button
-                        className={'button button__set'}
-                        data-settings={'on'}
-                        onClick={changeIsDoneSettings}
+                    <Button className={'button button__set'}
+                            dataAttribute={'on'}
+                            callBack={changeIsDoneSettings}
                     >
                         настроить
-                    </button>
+                    </Button>
                 </div>
             </div>
         </a.div>

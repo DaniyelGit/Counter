@@ -3,6 +3,7 @@ import s from './settings.module.css';
 import {InputBlock} from "./Input/InputBlock";
 import { a } from "@react-spring/web";
 import {SpringValue} from "react-spring";
+import {Button} from "../Button/Button";
 
 
 
@@ -35,13 +36,12 @@ export const Settings = (props: SettingsPropsType) => {
                 <InputBlock/>
             </div>
             <div className={'settings__button'}>
-                <button
-                    className={'button button__set'}
-                    data-settings={'off'}
-                    onClick={changeIsDoneSettings}
+                <Button dataAttribute={'off'}
+                        callBack={changeIsDoneSettings}
+                        className={'button button__set'}
                 >
                     Назад
-                </button>
+                </Button>
             </div>
         </a.div>
     );
