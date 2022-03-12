@@ -12,13 +12,15 @@ export const Button = (props: ButtonPropsType) => {
     const {
         dataAttribute,
         onClick,
-        ...restProps // className, children.
+        className,
+        ...restProps //
     } = props;
 
 
 
     return (
         <button
+            className={`button ${className ? className : ''}`}
             data-button={dataAttribute}
             onClick={onClick}
             {...restProps}

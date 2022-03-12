@@ -34,18 +34,16 @@ export const Counter = (props: CounterPropsType) => {
             <div className={'counter__buttons'}>
                 <div className={'counter__buttons_wrap'}>
                     <Button dataAttribute={'inc'}
-                            className={'button button__inc'}
                             onClick={changeCurrentValue}
                             children={'увеличить'}
                     />
                     <Button dataAttribute={'dec'}
-                            className={'button button__dec'}
                             onClick={changeCurrentValue}
                             children={'уменьшить'}
                     />
                 </div>
                 <div className={'wrap__button_set'}>
-                    <Button className={'button button__set'}
+                    <Button className={'button__set'}
                             dataAttribute={'on'}
                             onClick={changeIsDoneSettings}
                     >настроить</Button>
