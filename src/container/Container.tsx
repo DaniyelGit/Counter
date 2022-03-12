@@ -1,9 +1,15 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {selectCounterState} from "../redux/CounterReducer";
 import {Counter} from "../components/Counter/Counter";
 import {Settings} from "../components/Settings/Settings";
-import {changeIsDoneSettingsAC, changeMinOrMaxValue, decreaseValueAC, increaseValueAC} from "../redux/action";
+import {
+    changeIsDoneSettingsAC,
+    changeMinOrMaxValue,
+    decreaseValueAC,
+    increaseValueAC,
+    setIsErrorAC
+} from "../redux/action";
 import {useSpring} from "react-spring";
 
 
@@ -14,17 +20,27 @@ export const Container = () => {
         valueMin,
         valueMax,
         currentValue,
+        isDisabled,
     } = useSelector(selectCounterState)
 
     const dispatch = useDispatch();
 
-    const min = valueMin;
-    const max = valueMax;
 
-    const { transform, opacity} = useSpring({
+    useEffect(() => {
+        if (currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax) {
+            dispatch(setIsErrorAC(true));
+        }
+        else {
+            dispatch(setIsErrorAC(false));
+        }
+    }, [valueMax, valueMin, currentValue])
+
+    console.log(isDisabled);
+
+    const {transform, opacity} = useSpring({
         opacity: isDoneSettings ? 1 : 0,
         transform: `perspective(600px) rotateY(${isDoneSettings ? 180 : 0}deg)`,
-        config: { mass: 5, tension: 300, friction: 100 }
+        config: {mass: 5, tension: 300, friction: 100}
     });
 
     const changeIsDoneSettings = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,20 +64,13 @@ export const Container = () => {
     }
 
     const changeCurrentValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-        debugger;
         if (e.currentTarget.dataset.button) {
             const trigger: string = e.currentTarget.dataset.button;
-           if (trigger === 'inc') {
-               if (currentValue < valueMax) {
-                   dispatch(increaseValueAC())
-               }
-           }
-           else {
-               dispatch(decreaseValueAC());
-           }
+            trigger === 'inc'
+                ? dispatch(increaseValueAC())
+                : dispatch(decreaseValueAC())
         }
     }
-
 
 
     return (

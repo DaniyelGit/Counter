@@ -7,8 +7,6 @@ import {Button} from "../Button/Button";
 
 
 
-
-
 type SettingsPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
@@ -49,7 +47,7 @@ export const Settings = (props: SettingsPropsType) => {
             </div>
             <div className={'settings__button'}>
                 <Button dataAttribute={'off'}
-                        className={'button button__set'}
+                        className={'button__set'}
                         onClick={changeIsDoneSettings}
                 >
                     Назад

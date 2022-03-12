@@ -11,18 +11,16 @@ export const Button = (props: ButtonPropsType) => {
 
     const {
         dataAttribute,
-        onClick,
         className,
-        ...restProps //
+        ...restProps // onClick, children
     } = props;
 
-
+    console.log(props);
 
     return (
         <button
             className={`button ${className ? className : ''}`}
             data-button={dataAttribute}
-            onClick={onClick}
             {...restProps}
         />
     );

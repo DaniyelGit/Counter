@@ -9,6 +9,7 @@ const initialState = {
     currentValue: 0,
     valueMin: 0,
     valueMax: 0,
+    isDisabled: false,
 }
 
 
@@ -32,17 +33,17 @@ export const CounterReducer = (state: initialStateType = initialState, action: C
                 ...action.payload
             }
         }
-        case ACTIONS_TYPE.CHANGE_CURRENT_VALUE: {
-            return {
-                ...state,
-                ...action.payload
-            }
-        }
         case ACTIONS_TYPE.CHANGE_MIN_OR_MAX_VALUE: {
             return  {
                 ...state,
                 ...action.payload,
                 currentValue: action.payload.valueMin,
+            }
+        }
+        case ACTIONS_TYPE.SET_IS_ERROR: {
+            return  {
+                ...state,
+                ...action.payload,
             }
         }
         default: {
