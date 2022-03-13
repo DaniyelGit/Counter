@@ -12,9 +12,11 @@ type CounterPropsType = {
     currentValue: number
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
+    isDisabled: boolean
 }
 
-export const Counter = (props: CounterPropsType) => {
+
+export const Counter = React.memo( (props: CounterPropsType) => {
 
     const {
         transform,
@@ -22,6 +24,7 @@ export const Counter = (props: CounterPropsType) => {
         currentValue,
         changeIsDoneSettings,
         changeCurrentValue,
+        isDisabled,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -36,10 +39,13 @@ export const Counter = (props: CounterPropsType) => {
                     <Button dataAttribute={'inc'}
                             onClick={changeCurrentValue}
                             children={'увеличить'}
+                            disabled={isDisabled}
+
                     />
                     <Button dataAttribute={'dec'}
                             onClick={changeCurrentValue}
                             children={'уменьшить'}
+                            disabled={isDisabled}
                     />
                 </div>
                 <div className={'wrap__button_set'}>
@@ -51,4 +57,4 @@ export const Counter = (props: CounterPropsType) => {
             </div>
         </a.div>
     );
-};
+});

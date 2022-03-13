@@ -1,6 +1,6 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectCounterState} from "../redux/CounterReducer";
+import {initialStateType, selectCounterState} from "../redux/CounterReducer";
 import {Counter} from "../components/Counter/Counter";
 import {Settings} from "../components/Settings/Settings";
 import {
@@ -11,6 +11,7 @@ import {
     setIsErrorAC
 } from "../redux/action";
 import {useSpring} from "react-spring";
+import {RootReducerType} from "../redux/store";
 
 
 export const Container = () => {
@@ -23,19 +24,19 @@ export const Container = () => {
         isDisabled,
     } = useSelector(selectCounterState)
 
+
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        if (currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax) {
+        if (currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax || valueMin === valueMax) {
             dispatch(setIsErrorAC(true));
         }
         else {
             dispatch(setIsErrorAC(false));
         }
-    }, [valueMax, valueMin, currentValue])
+    }, [currentValue, valueMin, valueMax])
 
-    console.log(isDisabled);
 
     const {transform, opacity} = useSpring({
         opacity: isDoneSettings ? 1 : 0,
@@ -43,14 +44,14 @@ export const Container = () => {
         config: {mass: 5, tension: 300, friction: 100}
     });
 
-    const changeIsDoneSettings = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const changeIsDoneSettings = useCallback( (e: React.MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.dataset.button === 'on'
             ? dispatch(changeIsDoneSettingsAC(true))
             : dispatch(changeIsDoneSettingsAC(false));
-    }
+    }, [dispatch])
 
 
-    const changeMaxOrMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const changeMaxOrMinValue = useCallback( (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
             const currentValueInput: number = +e.currentTarget.value;
             const trigger: string = e.currentTarget.dataset.input;
@@ -61,16 +62,16 @@ export const Container = () => {
                 dispatch(changeMinOrMaxValue(valueMin, currentValueInput))
             }
         }
-    }
+    }, [valueMin, valueMax])
 
-    const changeCurrentValue = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const changeCurrentValue = useCallback( (e: React.MouseEvent<HTMLButtonElement>) => {
         if (e.currentTarget.dataset.button) {
             const trigger: string = e.currentTarget.dataset.button;
             trigger === 'inc'
                 ? dispatch(increaseValueAC())
                 : dispatch(decreaseValueAC())
         }
-    }
+    }, [dispatch])
 
 
     return (
@@ -82,6 +83,7 @@ export const Container = () => {
                     opacity={opacity}
                     changeIsDoneSettings={changeIsDoneSettings}
                     changeCurrentValue={changeCurrentValue}
+                    isDisabled={isDisabled}
                 />
                 <Settings
                     transform={transform}

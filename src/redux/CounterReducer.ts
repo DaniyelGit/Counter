@@ -2,7 +2,7 @@ import {ACTIONS_TYPE, CounterReducersTypes} from "./action";
 import {RootReducerType} from "./store";
 
 
-type initialStateType = typeof initialState;
+export type initialStateType = typeof initialState;
 
 const initialState = {
     isDoneSettings: false,

@@ -7,22 +7,26 @@ type ButtonPropsType = DefaultButtonPropsType & {
     dataAttribute: string
 }
 
-export const Button = (props: ButtonPropsType) => {
+export const Button = React.memo( (props: ButtonPropsType) => {
 
     const {
         dataAttribute,
         className,
+        disabled,
         ...restProps // onClick, children
     } = props;
 
     console.log(props);
 
+
+
     return (
         <button
             className={`button ${className ? className : ''}`}
             data-button={dataAttribute}
+            disabled={disabled}
             {...restProps}
         />
     );
-};
+});
 

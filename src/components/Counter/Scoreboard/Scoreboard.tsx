@@ -8,7 +8,7 @@ type ScoreboardPropsType = {
     currentValue: number
 }
 
-export const Scoreboard = (props: ScoreboardPropsType) => {
+export const Scoreboard = React.memo( (props: ScoreboardPropsType) => {
 
     const {
         currentValue,
@@ -22,4 +22,4 @@ export const Scoreboard = (props: ScoreboardPropsType) => {
             </span>
         </div>
     );
-};
+});

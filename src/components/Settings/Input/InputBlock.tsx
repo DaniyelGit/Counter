@@ -9,16 +9,13 @@ type InputPropsType = DefaultInputPropsType & {
     dataAttribute: string
 }
 
-export const InputBlock = (props: InputPropsType) => {
+export const InputBlock = React.memo( (props: InputPropsType) => {
 
     const {
         valueInput,
         dataAttribute,
         onChange,
     } = props;
-
-
-
 
 
     const labelChildren = dataAttribute === 'min' ? 'Минимальное' : 'Максимальное';
@@ -33,5 +30,5 @@ export const InputBlock = (props: InputPropsType) => {
             />
         </div>
     );
-};
+});
 

@@ -16,7 +16,7 @@ type SettingsPropsType = {
     changeMaxOrMinValue: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const Settings = (props: SettingsPropsType) => {
+export const Settings = React.memo( (props: SettingsPropsType) => {
 
     const {
         transform,
@@ -55,4 +55,4 @@ export const Settings = (props: SettingsPropsType) => {
             </div>
         </a.div>
     );
-};
+});
