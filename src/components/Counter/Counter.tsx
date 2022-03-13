@@ -14,6 +14,7 @@ type CounterPropsType = {
     changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
     isDisabled: boolean
     valueMin: number
+    valueMax: number
 }
 
 
@@ -27,6 +28,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
         changeCurrentValue,
         isDisabled,
         valueMin,
+        valueMax,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -34,7 +36,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
     return (
         <a.div className={'counter'} style={styleForCounter}>
 
-            <Scoreboard currentValue={currentValue}/>
+            <Scoreboard currentValue={currentValue} valueMax={valueMax}/>
 
             <div className={'counter__buttons'}>
                 <div className={'counter__buttons_wrap'}>

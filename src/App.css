@@ -93,6 +93,10 @@
     cursor: default;
 }
 
+.scoreboard__value_max {
+    color: #ff0000;
+}
+
 .counter__buttons {
     display: flex;
     justify-content: space-around;

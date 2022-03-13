@@ -27,7 +27,11 @@ export const Container = () => {
 
     const dispatch = useDispatch();
 
-    const resultIsDisabled = currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax || valueMin === valueMax;
+    const resultIsDisabled = currentValue >= valueMax
+        || valueMin < 0
+        || valueMax < 0
+        || valueMin >= valueMax
+        || valueMin === valueMax;
 
     useEffect(() => {
         if (resultIsDisabled) {
@@ -86,6 +90,7 @@ export const Container = () => {
                     changeCurrentValue={changeCurrentValue}
                     isDisabled={isDisabled}
                     valueMin={valueMin}
+                    valueMax={valueMax}
                 />
                 <Settings
                     transform={transform}
