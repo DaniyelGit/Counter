@@ -27,9 +27,10 @@ export const Container = () => {
 
     const dispatch = useDispatch();
 
+    const resultIsDisabled = currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax || valueMin === valueMax;
 
     useEffect(() => {
-        if (currentValue >= valueMax || valueMin < 0 || valueMax < 0 || valueMin >= valueMax || valueMin === valueMax) {
+        if (resultIsDisabled) {
             dispatch(setIsErrorAC(true));
         }
         else {
@@ -84,12 +85,14 @@ export const Container = () => {
                     changeIsDoneSettings={changeIsDoneSettings}
                     changeCurrentValue={changeCurrentValue}
                     isDisabled={isDisabled}
+                    valueMin={valueMin}
                 />
                 <Settings
                     transform={transform}
                     opacity={opacity}
                     valueMin={valueMin}
                     valueMax={valueMax}
+                    isDisabled={isDisabled}
                     changeIsDoneSettings={changeIsDoneSettings}
                     changeMaxOrMinValue={changeMaxOrMinValue}
                 />

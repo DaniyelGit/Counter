@@ -121,6 +121,10 @@
     box-shadow: 10px 10px 15px #c7c4c4c4, -10px -10px 15px #f9f9f9;
 }
 
+.button:active {
+    box-shadow: inset 10px 10px 15px #c7c4c4c4, inset -10px -10px 15px #f9f9f9;
+}
+
 .button__set {
     padding: 5px;
     width: 110px;
@@ -131,14 +135,14 @@
     color: #fff;
 }
 
-.button:active {
-    box-shadow: inset 10px 10px 15px #c7c4c4c4, inset -10px -10px 15px #f9f9f9;
-}
-
 .button__set:active {
     font-size: 15px;
     color: #fff;
     box-shadow: inset 1px 1px 1px rgb(255, 0, 0), inset 1px 1px 15px rgb(255, 0, 0);
+}
+
+.button__set:disabled {
+    opacity: .5;
 }
 
 

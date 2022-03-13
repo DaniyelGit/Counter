@@ -7,11 +7,13 @@ import {Button} from "../Button/Button";
 
 
 
+
 type SettingsPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
     valueMin: number
     valueMax: number
+    isDisabled: boolean
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeMaxOrMinValue: (e: ChangeEvent<HTMLInputElement>) => void
 }
@@ -23,6 +25,7 @@ export const Settings = React.memo( (props: SettingsPropsType) => {
         opacity,
         valueMin,
         valueMax,
+        isDisabled,
         changeIsDoneSettings,
         changeMaxOrMinValue,
     }= props;
@@ -49,8 +52,9 @@ export const Settings = React.memo( (props: SettingsPropsType) => {
                 <Button dataAttribute={'off'}
                         className={'button__set'}
                         onClick={changeIsDoneSettings}
+                        disabled={isDisabled}
                 >
-                    Назад
+                    назад
                 </Button>
             </div>
         </a.div>

@@ -13,6 +13,7 @@ type CounterPropsType = {
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
     isDisabled: boolean
+    valueMin: number
 }
 
 
@@ -25,6 +26,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
         changeIsDoneSettings,
         changeCurrentValue,
         isDisabled,
+        valueMin,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -40,12 +42,11 @@ export const Counter = React.memo( (props: CounterPropsType) => {
                             onClick={changeCurrentValue}
                             children={'увеличить'}
                             disabled={isDisabled}
-
                     />
                     <Button dataAttribute={'dec'}
                             onClick={changeCurrentValue}
                             children={'уменьшить'}
-                            disabled={isDisabled}
+                            disabled={currentValue <= valueMin}
                     />
                 </div>
                 <div className={'wrap__button_set'}>

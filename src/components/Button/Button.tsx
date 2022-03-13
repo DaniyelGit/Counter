@@ -1,5 +1,6 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
 import s from './button.module.css';
+import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
@@ -15,9 +16,6 @@ export const Button = React.memo( (props: ButtonPropsType) => {
         disabled,
         ...restProps // onClick, children
     } = props;
-
-    console.log(props);
-
 
 
     return (
