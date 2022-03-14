@@ -1,17 +1,16 @@
 import React, {ChangeEvent, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {initialStateType, selectCounterState} from "../redux/CounterReducer";
+import {selectCounterState} from "../redux/CounterReducer";
 import {Counter} from "../components/Counter/Counter";
 import {Settings} from "../components/Settings/Settings";
 import {
     changeIsDoneSettingsAC,
-    changeMinOrMaxValue,
+    changeMinOrMaxValueAC,
     decreaseValueAC,
-    increaseValueAC,
+    increaseValueAC, resetCurrentValueAC,
     setIsErrorAC
 } from "../redux/action";
 import {useSpring} from "react-spring";
-import {RootReducerType} from "../redux/store";
 
 
 export const Container = () => {
@@ -61,10 +60,10 @@ export const Container = () => {
             const currentValueInput: number = +e.currentTarget.value;
             const trigger: string = e.currentTarget.dataset.input;
             if (trigger === 'min') {
-                dispatch(changeMinOrMaxValue(currentValueInput, valueMax))
+                dispatch(changeMinOrMaxValueAC(currentValueInput, valueMax))
             }
             if (trigger === 'max') {
-                dispatch(changeMinOrMaxValue(valueMin, currentValueInput))
+                dispatch(changeMinOrMaxValueAC(valueMin, currentValueInput))
             }
         }
     }, [valueMin, valueMax])
@@ -78,6 +77,10 @@ export const Container = () => {
         }
     }, [dispatch])
 
+    const resetCurrentValue = useCallback(() => {
+        dispatch(resetCurrentValueAC());
+    }, [dispatch])
+
 
     return (
         <div className="App">
@@ -88,6 +91,7 @@ export const Container = () => {
                     opacity={opacity}
                     changeIsDoneSettings={changeIsDoneSettings}
                     changeCurrentValue={changeCurrentValue}
+                    resetCurrentValue={resetCurrentValue}
                     isDisabled={isDisabled}
                     valueMin={valueMin}
                     valueMax={valueMax}

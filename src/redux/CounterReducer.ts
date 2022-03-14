@@ -40,6 +40,12 @@ export const CounterReducer = (state: initialStateType = initialState, action: C
                 currentValue: action.payload.valueMin,
             }
         }
+        case ACTIONS_TYPE.RESET_CURRENT_VALUE: {
+            return {
+                ...state,
+                currentValue: state.valueMin,
+            }
+        }
         case ACTIONS_TYPE.SET_IS_ERROR: {
             return  {
                 ...state,

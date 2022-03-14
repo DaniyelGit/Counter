@@ -4,25 +4,27 @@ export enum ACTIONS_TYPE {
     INCREASE_CURRENT_VALUE = 'Counter/Button/increaseValue',
     DECREASE_CURRENT_VALUE = 'Counter/Button/decreaseValue',
     SET_IS_ERROR = 'App/Container/useEffect',
+    RESET_CURRENT_VALUE = 'Counter/Button/resetCurrentValue'
 }
 
 
-export type CounterReducersTypes = changeIsDoneSettingsACType
+export type CounterReducersTypes = changeIsDoneSettingsAC
     | changeMinOrMaxValueAC
     | increaseValueAC
     | decreaseValueAC
-    | setIsErrorAC;
+    | setIsErrorAC
+    | resetCurrentValueAC;
 
 
 
-type changeIsDoneSettingsACType = {
+type changeIsDoneSettingsAC = {
     type: ACTIONS_TYPE.CHANGE_IS_DONE_SETTINGS,
     payload: {
         isDoneSettings: boolean
     }
 }
 
-export const changeIsDoneSettingsAC = (isDoneSettings: boolean) : changeIsDoneSettingsACType => {
+export const changeIsDoneSettingsAC = (isDoneSettings: boolean) : changeIsDoneSettingsAC => {
     return {
         type: ACTIONS_TYPE.CHANGE_IS_DONE_SETTINGS,
         payload: {
@@ -39,13 +41,23 @@ type changeMinOrMaxValueAC = {
     }
 }
 
-export const changeMinOrMaxValue = (valueMin: number, valueMax: number): changeMinOrMaxValueAC => {
+export const changeMinOrMaxValueAC = (valueMin: number, valueMax: number): changeMinOrMaxValueAC => {
     return {
         type: ACTIONS_TYPE.CHANGE_MIN_OR_MAX_VALUE,
         payload: {
             valueMin,
             valueMax,
         }
+    }
+}
+
+type resetCurrentValueAC = {
+    type: ACTIONS_TYPE.RESET_CURRENT_VALUE
+}
+
+export const resetCurrentValueAC = () => {
+    return {
+        type: ACTIONS_TYPE.RESET_CURRENT_VALUE
     }
 }
 

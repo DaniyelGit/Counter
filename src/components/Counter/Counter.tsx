@@ -12,6 +12,7 @@ type CounterPropsType = {
     currentValue: number
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
+    resetCurrentValue: () => void
     isDisabled: boolean
     valueMin: number
     valueMax: number
@@ -26,6 +27,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
         currentValue,
         changeIsDoneSettings,
         changeCurrentValue,
+        resetCurrentValue,
         isDisabled,
         valueMin,
         valueMax,
@@ -36,7 +38,9 @@ export const Counter = React.memo( (props: CounterPropsType) => {
     return (
         <a.div className={'counter'} style={styleForCounter}>
 
-            <Scoreboard currentValue={currentValue} valueMax={valueMax}/>
+            <Scoreboard currentValue={currentValue}
+                        valueMax={valueMax}
+            />
 
             <div className={'counter__buttons'}>
                 <div className={'counter__buttons_wrap'}>
@@ -49,6 +53,11 @@ export const Counter = React.memo( (props: CounterPropsType) => {
                             onClick={changeCurrentValue}
                             children={'уменьшить'}
                             disabled={currentValue <= valueMin}
+                    />
+                    <Button dataAttribute={'reset'}
+                            children={'сброс'}
+                            disabled={currentValue === valueMin}
+                            onClick={resetCurrentValue}
                     />
                 </div>
                 <div className={'wrap__button_set'}>

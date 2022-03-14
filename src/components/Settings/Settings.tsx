@@ -52,7 +52,6 @@ export const Settings = React.memo( (props: SettingsPropsType) => {
                 <Button dataAttribute={'off'}
                         className={'button__set'}
                         onClick={changeIsDoneSettings}
-                        disabled={isDisabled}
                 >
                     назад
                 </Button>
