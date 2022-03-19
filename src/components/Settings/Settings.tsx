@@ -14,6 +14,7 @@ type SettingsPropsType = {
     valueMin: number
     valueMax: number
     isDisabled: boolean
+    checkingForCorrectValue: boolean
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeMaxOrMinValue: (e: ChangeEvent<HTMLInputElement>) => void
 }
@@ -25,7 +26,7 @@ export const Settings = React.memo( (props: SettingsPropsType) => {
         opacity,
         valueMin,
         valueMax,
-        isDisabled,
+        checkingForCorrectValue,
         changeIsDoneSettings,
         changeMaxOrMinValue,
     }= props;
@@ -41,10 +42,12 @@ export const Settings = React.memo( (props: SettingsPropsType) => {
             <div className={'settings__wrap'}>
                 <InputBlock valueInput={valueMin}
                             dataAttribute={'min'}
+                            checkingForCorrectValue={checkingForCorrectValue}
                             onChange={changeMaxOrMinValue}
                 />
                 <InputBlock valueInput={valueMax}
                             dataAttribute={'max'}
+                            checkingForCorrectValue={checkingForCorrectValue}
                             onChange={changeMaxOrMinValue}
                 />
             </div>

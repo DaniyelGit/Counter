@@ -49,6 +49,8 @@ export const Container = () => {
         config: {mass: 5, tension: 300, friction: 100}
     });
 
+    const checkingForCorrectValue = valueMin > valueMax || valueMin < 0 || valueMax < 0 || valueMax === valueMin;
+
     const changeIsDoneSettings = useCallback( (e: React.MouseEvent<HTMLButtonElement>) => {
         e.currentTarget.dataset.button === 'on'
             ? dispatch(changeIsDoneSettingsAC(true))
@@ -97,6 +99,7 @@ export const Container = () => {
                     valueMin={valueMin}
                     valueMax={valueMax}
                     isWarning={isWarning}
+                    checkingForCorrectValue={checkingForCorrectValue}
                 />
                 <Settings
                     transform={transform}
@@ -104,6 +107,7 @@ export const Container = () => {
                     valueMin={valueMin}
                     valueMax={valueMax}
                     isDisabled={isDisabled}
+                    checkingForCorrectValue={checkingForCorrectValue}
                     changeIsDoneSettings={changeIsDoneSettings}
                     changeMaxOrMinValue={changeMaxOrMinValue}
                 />

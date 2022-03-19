@@ -14,6 +14,7 @@ type CounterPropsType = {
     valueMin: number
     valueMax: number
     isWarning: string
+    checkingForCorrectValue: boolean
     changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
     changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
     resetCurrentValue: () => void
@@ -30,6 +31,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
         valueMin,
         valueMax,
         isWarning,
+        checkingForCorrectValue,
         changeIsDoneSettings,
         changeCurrentValue,
         resetCurrentValue,
@@ -42,7 +44,7 @@ export const Counter = React.memo( (props: CounterPropsType) => {
 
             <Scoreboard currentValue={currentValue}
                         valueMax={valueMax}
-                        valueMin={valueMin}
+                        checkingForCorrectValue={checkingForCorrectValue}
                         isWarning={isWarning}
             />
 

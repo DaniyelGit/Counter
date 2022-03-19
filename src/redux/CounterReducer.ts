@@ -17,7 +17,7 @@ const initialState = {
     valueMin: 0,
     valueMax: 0,
     isDisabled: false,
-    isWarning: 'Введите коректные значения: максимальное > минимального!!!'
+    isWarning: 'Введите коректные значения: максимальное > минимального и значения > 0'
 }
 
 
