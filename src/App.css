@@ -84,6 +84,7 @@
     background-color: #eaeaea;
     box-shadow: inset 3px 3px 10px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
     margin-bottom: 25px;
+    padding: 10px;
 }
 
 .scoreboard__value {
@@ -154,4 +155,19 @@
     display: flex;
     justify-content: center;
     margin-top: 90px;
+}
+
+
+.warning {
+    color: #ff0000;
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+}
+
+.isWarning {
+    color: #ff0000;
+    font-weight: 700;
+    font-size: 25px;
+    text-align: center;
 }

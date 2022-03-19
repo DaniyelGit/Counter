@@ -2,7 +2,14 @@ import {ACTIONS_TYPE, CounterReducersTypes} from "./action";
 import {RootReducerType} from "./store";
 
 
-export type initialStateType = typeof initialState;
+export type initialStateType = {
+    isDoneSettings: boolean,
+    currentValue: number
+    valueMin: number,
+    valueMax: number,
+    isDisabled: boolean,
+    isWarning: string
+}
 
 const initialState = {
     isDoneSettings: false,
@@ -10,6 +17,7 @@ const initialState = {
     valueMin: 0,
     valueMax: 0,
     isDisabled: false,
+    isWarning: 'Введите коректные значения: максимальное > минимального!!!'
 }
 
 

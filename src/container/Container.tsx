@@ -21,6 +21,7 @@ export const Container = () => {
         valueMax,
         currentValue,
         isDisabled,
+        isWarning,
     } = useSelector(selectCounterState)
 
 
@@ -29,7 +30,7 @@ export const Container = () => {
     const resultIsDisabled = currentValue >= valueMax
         || valueMin < 0
         || valueMax < 0
-        || valueMin >= valueMax
+        || valueMin > valueMax
         || valueMin === valueMax;
 
     useEffect(() => {
@@ -95,6 +96,7 @@ export const Container = () => {
                     isDisabled={isDisabled}
                     valueMin={valueMin}
                     valueMax={valueMax}
+                    isWarning={isWarning}
                 />
                 <Settings
                     transform={transform}

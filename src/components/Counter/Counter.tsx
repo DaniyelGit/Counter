@@ -10,12 +10,13 @@ type CounterPropsType = {
     transform: SpringValue<string>
     opacity: SpringValue<number>
     currentValue: number
-    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
-    changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
-    resetCurrentValue: () => void
     isDisabled: boolean
     valueMin: number
     valueMax: number
+    isWarning: string
+    changeIsDoneSettings: (e: React.MouseEvent<HTMLButtonElement>) => void
+    changeCurrentValue: (e: React.MouseEvent<HTMLButtonElement>) => void
+    resetCurrentValue: () => void
 }
 
 
@@ -25,12 +26,13 @@ export const Counter = React.memo( (props: CounterPropsType) => {
         transform,
         opacity,
         currentValue,
-        changeIsDoneSettings,
-        changeCurrentValue,
-        resetCurrentValue,
         isDisabled,
         valueMin,
         valueMax,
+        isWarning,
+        changeIsDoneSettings,
+        changeCurrentValue,
+        resetCurrentValue,
     } = props;
 
     const styleForCounter = {opacity: opacity.to((o: number) => 1 - o), transform};
@@ -40,6 +42,8 @@ export const Counter = React.memo( (props: CounterPropsType) => {
 
             <Scoreboard currentValue={currentValue}
                         valueMax={valueMax}
+                        valueMin={valueMin}
+                        isWarning={isWarning}
             />
 
             <div className={'counter__buttons'}>
